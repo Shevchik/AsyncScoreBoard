@@ -11,7 +11,11 @@ public class PlayerListScoreboard {
 	public static void updateScoreBoard(Player player) {
 		Scoreboards.getInstance().updateSlot(
 			player, DisplaySlot.PLAYER_LIST, "dummy",
-			slot -> Bukkit.getOnlinePlayers().forEach(oplayer -> slot.setEntry(oplayer.getPlayerListName(), Scoreboards.getPlayerListValue(oplayer)))
+			slot -> Bukkit.getOnlinePlayers().forEach(oplayer -> {
+				int value = Scoreboards.getPlayerListValue(oplayer);
+				slot.setEntry(oplayer.getPlayerListName(), value);
+				slot.setEntry(oplayer.getName(), value);
+			})
 		);
 	}
 

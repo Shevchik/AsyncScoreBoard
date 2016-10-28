@@ -86,6 +86,7 @@ public class ScoreboardHandler implements Listener {
 			}
 			if (board.hasSlot(DisplaySlot.PLAYER_LIST)) {
 				board.getSlot(DisplaySlot.PLAYER_LIST).removeEntry(event.getPlayer().getPlayerListName());
+				board.getSlot(DisplaySlot.PLAYER_LIST).removeEntry(playerName);
 			}
 		});
 		ssLastUpdateTime.remove(playerName);
