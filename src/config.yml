@@ -1,0 +1,29 @@
+Scoreboard:
+  DisabledWorlds: []
+  Sidebar:
+    Enabled: True
+    Interval: 5000
+    Title: 'Info'
+    Rows:
+    - 'Current region'
+    - '%asbworldguard_current_region%'
+    - ''
+    - 'Ping'
+    - '%asbplayer_ping%'
+    - ''
+    - 'Money'
+    - '%vault_eco_balance%'
+  BelowName:
+    Enabled: True
+    Interval: 100
+    String: 'Health'
+    Value: '%player_health%'
+  PlayerList:
+    Enabled: True
+    Interval: 1000
+    Value: '%asbplayer_ping%'
+Placeholders:
+  WorldGuard:
+    NoRegion: '&7no region'
+    OwnRegionPrefix: '&a'
+    NotOwnRegionPrefix: '&c'

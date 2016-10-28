@@ -1,0 +1,10 @@
+name: AsyncScoreBoard
+main: asyncscoreboard.Main
+version: 1.0
+authors: 
+- _Shevchik_
+depend: [PlaceholderAPI]
+softdepend: [WorldGuard]
+commands:
+  asb:
+    description: All AsyncScoreBoard commands
