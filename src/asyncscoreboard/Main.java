@@ -40,7 +40,7 @@ public class Main extends JavaPlugin {
 		PingPlaceholder.hook();
 		WorldGuardPlaceholder.hook();
 		FileConfiguration config = getConfig();
-		cfgSBDisabledWorlds = new HashSet<String>(config.getStringList("Scoreboard.DisabledWorlds"));
+		cfgSBDisabledWorlds = new HashSet<>(config.getStringList("Scoreboard.DisabledWorlds"));
 
 		cfgSBSiderbarEnabled = config.getBoolean("Scoreboard.Sidebar.Enabled");
 		cfgSBSidebarInterval = config.getInt("Scoreboard.Sidebar.Interval");

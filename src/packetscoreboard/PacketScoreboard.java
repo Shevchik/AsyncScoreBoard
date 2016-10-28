@@ -22,7 +22,7 @@ public class PacketScoreboard {
 		this.connection = ((CraftPlayer) player).getHandle().playerConnection;
 	}
 
-	private final EnumMap<DisplaySlot, PacketScoreboardSlot> slots = new EnumMap<DisplaySlot, PacketScoreboardSlot>(DisplaySlot.class);
+	private final EnumMap<DisplaySlot, PacketScoreboardSlot> slots = new EnumMap<>(DisplaySlot.class);
 
 	public boolean hasSlot(DisplaySlot slot) {
 		return slots.containsKey(slot);
@@ -44,7 +44,7 @@ public class PacketScoreboard {
 	public void removeSlot(DisplaySlot slot) {
 		PacketScoreboardSlot rslot = slots.remove(slot);
 		if (rslot != null) {
-			for (PacketScoreboardTeam team : new ArrayList<PacketScoreboardTeam>(rslot.getTeams())) {
+			for (PacketScoreboardTeam team : new ArrayList<>(rslot.getTeams())) {
 				rslot.removeTeam(team);
 			}
 			String intName = "PSB"+slot.toString();
@@ -79,7 +79,7 @@ public class PacketScoreboard {
 		public PointedScoreboardObjective(String name) {
 			super(fakeScoreboard, name, fakeCriteria);
 		}
-		
+
 	}
 
 	protected static class NamedScoreboardObjective extends PointedScoreboardObjective {
@@ -88,7 +88,7 @@ public class PacketScoreboard {
 			super(name);
 			setDisplayName(title);
 		}
-		
+
 	}
 
 }

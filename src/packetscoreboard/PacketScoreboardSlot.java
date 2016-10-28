@@ -8,7 +8,6 @@ import java.util.Set;
 import net.minecraft.server.v1_10_R1.PacketPlayOutScoreboardScore;
 import net.minecraft.server.v1_10_R1.PacketPlayOutScoreboardTeam;
 import net.minecraft.server.v1_10_R1.ScoreboardScore;
-
 import packetscoreboard.PacketScoreboard.PointedScoreboardObjective;
 import packetscoreboard.PacketScoreboardTeam.PacketTeam;
 

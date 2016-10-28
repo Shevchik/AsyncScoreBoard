@@ -12,7 +12,7 @@ public class PacketScoreboardTeam {
 
 	private String name;
 	private String prefix;
-	private List<String> entries = new ArrayList<String>();
+	private List<String> entries = new ArrayList<>();
 	public PacketScoreboardTeam(String name, String prefix, String... entries) {
 		this.name = name;
 		this.prefix = prefix;

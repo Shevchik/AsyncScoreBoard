@@ -18,7 +18,7 @@ public class Scoreboards {
 		return instance;
 	}
 
-	private final HashMap<String, PacketScoreboard> boards = new HashMap<String, PacketScoreboard>();
+	private final HashMap<String, PacketScoreboard> boards = new HashMap<>();
 	private final Object lock = new Object();
 
 	public void updateSlot(Player player, DisplaySlot slot, String displayName, SlotUpdateFunc func) {

@@ -39,7 +39,7 @@ public class ScoreboardHandler implements Listener {
 
 					if (Main.cfgSBBelowNameEnabled) {
 						Long blLastUpdate = blLastUpdateTime.get(player.getName());
-						if (blLastUpdate == null || curTime - blLastUpdate > Main.cfgSBBelowNameInterval) {
+						if ((blLastUpdate == null) || ((curTime - blLastUpdate) > Main.cfgSBBelowNameInterval)) {
 							BelowNameScoreboard.updateScoreBoard(player);
 							blLastUpdateTime.put(player.getName(), curTime);
 						}
@@ -47,7 +47,7 @@ public class ScoreboardHandler implements Listener {
 
 					if (Main.cfgSBSiderbarEnabled) {
 						Long ssLastUpdate = ssLastUpdateTime.get(player.getName());
-						if (ssLastUpdate == null || curTime - ssLastUpdate > Main.cfgSBSidebarInterval) {
+						if ((ssLastUpdate == null) || ((curTime - ssLastUpdate) > Main.cfgSBSidebarInterval)) {
 							SidebarScoreboard.updateScoreBoard(player);
 							ssLastUpdateTime.put(player.getName(), curTime);
 						}
@@ -55,7 +55,7 @@ public class ScoreboardHandler implements Listener {
 
 					if (Main.cfgSBPlayerListEnabled) {
 						Long plLastUpdate = plLastUpdateTime.get(player.getName());
-						if (plLastUpdate == null || curTime - plLastUpdate > Main.cfgSBPlayerListInterval) {
+						if ((plLastUpdate == null) || ((curTime - plLastUpdate) > Main.cfgSBPlayerListInterval)) {
 							PlayerListScoreboard.updateScoreBoard(player);
 							plLastUpdateTime.put(player.getName(), curTime);
 						}
