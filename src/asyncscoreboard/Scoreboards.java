@@ -67,7 +67,7 @@ public class Scoreboards {
 
 	public static int getBelowNameValue(Player player) {
 		try {
-			return Integer.parseInt(PlaceholderAPI.setPlaceholders(player, Main.cfgSBBelowNameValue));
+			return (int) Math.round(Double.parseDouble(PlaceholderAPI.setPlaceholders(player, Main.cfgSBBelowNameValue)));
 		} catch (NumberFormatException e) {
 			return -1;
 		}
@@ -75,7 +75,7 @@ public class Scoreboards {
 
 	public static int getPlayerListValue(Player player) {
 		try {
-			return Integer.parseInt(PlaceholderAPI.setPlaceholders(player, Main.cfgSBPlayerListValue));
+			return (int) Math.round(Double.parseDouble(PlaceholderAPI.setPlaceholders(player, Main.cfgSBPlayerListValue)));
 		} catch (NumberFormatException e) {
 			return -1;
 		}
