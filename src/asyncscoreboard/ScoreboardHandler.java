@@ -31,33 +31,38 @@ public class ScoreboardHandler implements Listener {
 		sbUpdateTask = Bukkit.getScheduler().runTaskTimerAsynchronously(Main.getInstance(), () -> {
 			long curTime = System.currentTimeMillis();
 			Bukkit.getOnlinePlayers().forEach(player -> {
-				if (!Main.cfgSBDisabledWorlds.contains(player.getWorld().getName())) {
 
-					if (Main.cfgSBBelowNameEnabled) {
-						Long blLastUpdate = blLastUpdateTime.get(player.getName());
-						if ((blLastUpdate == null) || ((curTime - blLastUpdate) > Main.cfgSBBelowNameInterval)) {
-							BelowNameScoreboard.updateScoreBoard(player);
-							blLastUpdateTime.put(player.getName(), curTime);
-						}
-					}
-
-					if (Main.cfgSBSiderbarEnabled) {
-						Long ssLastUpdate = ssLastUpdateTime.get(player.getName());
-						if ((ssLastUpdate == null) || ((curTime - ssLastUpdate) > Main.cfgSBSidebarInterval)) {
-							SidebarScoreboard.updateScoreBoard(player);
-							ssLastUpdateTime.put(player.getName(), curTime);
-						}
-					}
-
-					if (Main.cfgSBPlayerListEnabled) {
-						Long plLastUpdate = plLastUpdateTime.get(player.getName());
-						if ((plLastUpdate == null) || ((curTime - plLastUpdate) > Main.cfgSBPlayerListInterval)) {
-							PlayerListScoreboard.updateScoreBoard(player);
-							plLastUpdateTime.put(player.getName(), curTime);
-						}
-					}
-
+				if (!Main.getInstance().getStorage().getPlayerData(player.getUniqueId()).show()) {
+					return;
 				}
+				if (Main.cfgSBDisabledWorlds.contains(player.getWorld().getName())) {
+					return;
+				}
+
+				if (Main.cfgSBBelowNameEnabled) {
+					Long blLastUpdate = blLastUpdateTime.get(player.getName());
+					if ((blLastUpdate == null) || ((curTime - blLastUpdate) > Main.cfgSBBelowNameInterval)) {
+						BelowNameScoreboard.updateScoreBoard(player);
+						blLastUpdateTime.put(player.getName(), curTime);
+					}
+				}
+
+				if (Main.cfgSBSiderbarEnabled) {
+					Long ssLastUpdate = ssLastUpdateTime.get(player.getName());
+					if ((ssLastUpdate == null) || ((curTime - ssLastUpdate) > Main.cfgSBSidebarInterval)) {
+						SidebarScoreboard.updateScoreBoard(player);
+						ssLastUpdateTime.put(player.getName(), curTime);
+					}
+				}
+
+				if (Main.cfgSBPlayerListEnabled) {
+					Long plLastUpdate = plLastUpdateTime.get(player.getName());
+					if ((plLastUpdate == null) || ((curTime - plLastUpdate) > Main.cfgSBPlayerListInterval)) {
+						PlayerListScoreboard.updateScoreBoard(player);
+						plLastUpdateTime.put(player.getName(), curTime);
+					}
+				}
+
 			});
 		}, 0L, 1L);
 	}
