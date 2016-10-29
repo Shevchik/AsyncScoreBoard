@@ -54,11 +54,11 @@ public class Scoreboards {
 	}
 
 	public static String getSidebarTitle(Player player) {
-		return formatLine(Main.cfgSBSidebarTitle, player);
+		return formatLine(Main.cfgSBSidebarTitle, player, 32);
 	}
 
 	public static String[] getSidebarLines(Player player) {
-		return Stream.of(Main.cfgSBSidebarLines).map(row -> formatLine(row, player)).toArray(String[]::new);
+		return Stream.of(Main.cfgSBSidebarLines).map(row -> formatLine(row, player, 28)).toArray(String[]::new);
 	}
 
 	public static String getBelowNameString() {
@@ -81,9 +81,9 @@ public class Scoreboards {
 		}
 	}
 
-	private static String formatLine(String string, Player player) {
+	private static String formatLine(String string, Player player, int limit) {
 		string = PlaceholderAPI.setPlaceholders(player, string);
-		string = string.substring(0, Math.min(string.length(), 16));
+		string = string.substring(0, Math.min(string.length(), limit));
 		return string;
 	}
 

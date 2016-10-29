@@ -48,12 +48,12 @@ public class PacketScoreboardSlot {
 	public void addTeam(PacketScoreboardTeam team) {
 		teams.add(team);
 		team.setScoreboard(packetscoreboard);
-		packetscoreboard.getPlayerConnection().sendPacket(new PacketPlayOutScoreboardTeam(new PacketTeam(team.getName(), team.getPrefix(), team.getEntries()), 0));
+		packetscoreboard.getPlayerConnection().sendPacket(new PacketPlayOutScoreboardTeam(new PacketTeam(team.getName(), team.getPrefix(), team.getSuffix(), team.getEntries()), 0));
 	}
 
 	public void removeTeam(PacketScoreboardTeam team) {
 		teams.remove(team);
-		packetscoreboard.getPlayerConnection().sendPacket(new PacketPlayOutScoreboardTeam(new PacketTeam(team.getName(), "", Collections.emptyList()), 1));
+		packetscoreboard.getPlayerConnection().sendPacket(new PacketPlayOutScoreboardTeam(new PacketTeam(team.getName(), "", "", Collections.emptyList()), 1));
 	}
 
 	private static class PacketScore extends ScoreboardScore {

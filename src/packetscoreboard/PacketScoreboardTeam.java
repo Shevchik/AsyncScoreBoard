@@ -12,10 +12,12 @@ public class PacketScoreboardTeam {
 
 	private String name;
 	private String prefix;
+	private String suffix;
 	private List<String> entries = new ArrayList<>();
-	public PacketScoreboardTeam(String name, String prefix, String... entries) {
+	public PacketScoreboardTeam(String name, String prefix, String suffix, String... entries) {
 		this.name = name;
 		this.prefix = prefix;
+		this.suffix = suffix;
 		this.entries.addAll(Arrays.asList(entries));
 	}
 
@@ -28,12 +30,25 @@ public class PacketScoreboardTeam {
 			return;
 		}
 		this.prefix = prefix;
-		packetscoreboard.getPlayerConnection().sendPacket(new PacketPlayOutScoreboardTeam(new PacketTeam(name, prefix, entries), 2));
+		packetscoreboard.getPlayerConnection().sendPacket(new PacketPlayOutScoreboardTeam(new PacketTeam(name, prefix, suffix, entries), 2));
+	}
+
+	public void setSuffix(String suffix) {
+		if (this.suffix.equals(suffix)) {
+			return;
+		}
+		this.suffix = suffix;
+		packetscoreboard.getPlayerConnection().sendPacket(new PacketPlayOutScoreboardTeam(new PacketTeam(name, prefix, suffix, entries), 2));
 	}
 
 	public String getPrefix() {
 		return prefix;
 	}
+
+	public String getSuffix() {
+		return suffix;
+	}
+
 
 	public List<String> getEntries() {
 		return entries;
@@ -47,16 +62,23 @@ public class PacketScoreboardTeam {
 	protected static class PacketTeam extends ScoreboardTeam {
 
 		private final String prefix;
+		private final String suffix;
 		private final List<String> entries;
-		public PacketTeam(String name, String prefix, List<String> entries) {
+		public PacketTeam(String name, String prefix, String suffix, List<String> entries) {
 			super(null, name);
 			this.prefix = prefix;
+			this.suffix = suffix;
 			this.entries = entries;
 		}
 
 		@Override
 		public String getPrefix() {
 			return prefix;
+		}
+
+		@Override
+		public String getSuffix() {
+			return suffix;
 		}
 
 		@Override
