@@ -67,7 +67,9 @@ public class Storage implements Listener {
 
 	@EventHandler
 	public void onLogin(PlayerLoginEvent event) {
-		storage.put(event.getPlayer().getUniqueId(), new PlayerData());
+		if (getPlayerData(event.getPlayer().getUniqueId()) == null) {
+			storage.put(event.getPlayer().getUniqueId(), new PlayerData());
+		}
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR)
