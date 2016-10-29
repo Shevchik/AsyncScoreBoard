@@ -2,9 +2,9 @@ package asyncscoreboard.storage;
 
 public class PlayerData {
 
-	private int kills;
-	private int deaths;
-	private boolean show;
+	private int kills = 0;
+	private int deaths = 0;
+	private boolean show = true;
 
 	public int getKills() {
 		return kills;
