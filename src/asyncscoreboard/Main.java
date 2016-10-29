@@ -5,10 +5,21 @@ import java.util.HashSet;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import asyncscoreboard.storage.Storage;
+import placeholders.KillsDeathsPlaceHolder;
 import placeholders.PingPlaceholder;
 import placeholders.WorldGuardPlaceholder;
 
 public class Main extends JavaPlugin {
+
+	private static Main instance;
+	public Main() {
+		instance = this;
+	}
+
+	public static Main getInstance() {
+		return instance;
+	}
 
 	public static HashSet<String> cfgSBDisabledWorlds;
 
@@ -30,15 +41,24 @@ public class Main extends JavaPlugin {
 	public static String cfgPHWGOwnRegionPrefix;
 	public static String cfgPHWGNotOwnRegionPrefix;
 
-	private final ScoreboardHandler handler = new ScoreboardHandler(this);
+	private final ScoreboardHandler handler = new ScoreboardHandler();
+	private final Storage storage = new Storage();
+
+	public Storage getStorage() {
+		return storage;
+	}
 
 	@Override
 	public void onEnable() {
 		getConfig().options().copyDefaults(true);
 		saveConfig();
 		reloadConfig();
+		storage.start();
+
 		PingPlaceholder.hook();
 		WorldGuardPlaceholder.hook();
+		KillsDeathsPlaceHolder.hook();
+
 		FileConfiguration config = getConfig();
 		cfgSBDisabledWorlds = new HashSet<>(config.getStringList("Scoreboard.DisabledWorlds"));
 
@@ -70,6 +90,8 @@ public class Main extends JavaPlugin {
 		handler.stop();
 		WorldGuardPlaceholder.unhook();
 		PingPlaceholder.unhook();
+		KillsDeathsPlaceHolder.unhook();
+		storage.stop();
 	}
 
 }

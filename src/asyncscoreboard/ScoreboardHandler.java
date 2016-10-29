@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -19,11 +20,6 @@ import me.clip.placeholderapi.PlaceholderAPI;
 
 public class ScoreboardHandler implements Listener {
 
-	private final Main plugin;
-	public ScoreboardHandler(Main plugin) {
-		this.plugin = plugin;
-	}
-
 	private BukkitTask sbUpdateTask;
 
 	protected final HashMap<String, Long> blLastUpdateTime = new HashMap<>();
@@ -31,8 +27,8 @@ public class ScoreboardHandler implements Listener {
 	protected final HashMap<String, Long> plLastUpdateTime = new HashMap<>();
 
 	public void start() {
-		Bukkit.getPluginManager().registerEvents(this, plugin);
-		sbUpdateTask = Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, () -> {
+		Bukkit.getPluginManager().registerEvents(this, Main.getInstance());
+		sbUpdateTask = Bukkit.getScheduler().runTaskTimerAsynchronously(Main.getInstance(), () -> {
 			long curTime = System.currentTimeMillis();
 			Bukkit.getOnlinePlayers().forEach(player -> {
 				if (!Main.cfgSBDisabledWorlds.contains(player.getWorld().getName())) {
@@ -69,6 +65,7 @@ public class ScoreboardHandler implements Listener {
 	public void stop() {
 		sbUpdateTask.cancel();
 		Bukkit.getOnlinePlayers().forEach(Scoreboards.getInstance()::clearScoreboard);
+		HandlerList.unregisterAll(this);
 	}
 
 	@EventHandler(priority=EventPriority.LOWEST)
