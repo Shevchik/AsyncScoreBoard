@@ -75,13 +75,13 @@ public class Storage implements Listener {
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onPlayerDeath(PlayerDeathEvent event) {
 		Player player = event.getEntity();
-		if (player.getHealth() > 0.0f) {
+		if (Main.cfgSBDisabledWorlds.contains(player.getWorld().getName())) {
 			return;
 		}
 		getPlayerData(player.getUniqueId()).incDeaths();
 		Player killer = player.getKiller();
 		if (killer != null) {
-			getPlayerData(player.getUniqueId()).incKills();
+			getPlayerData(killer.getUniqueId()).incKills();
 		}
 	}
 
