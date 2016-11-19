@@ -3,17 +3,17 @@ package packetscoreboard;
 import java.util.ArrayList;
 import java.util.EnumMap;
 
-import org.bukkit.craftbukkit.v1_10_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
 
-import net.minecraft.server.v1_10_R1.IScoreboardCriteria;
-import net.minecraft.server.v1_10_R1.PacketPlayOutScoreboardDisplayObjective;
-import net.minecraft.server.v1_10_R1.PacketPlayOutScoreboardObjective;
-import net.minecraft.server.v1_10_R1.PlayerConnection;
-import net.minecraft.server.v1_10_R1.Scoreboard;
-import net.minecraft.server.v1_10_R1.ScoreboardBaseCriteria;
-import net.minecraft.server.v1_10_R1.ScoreboardObjective;
+import net.minecraft.server.v1_11_R1.IScoreboardCriteria;
+import net.minecraft.server.v1_11_R1.PacketPlayOutScoreboardDisplayObjective;
+import net.minecraft.server.v1_11_R1.PacketPlayOutScoreboardObjective;
+import net.minecraft.server.v1_11_R1.PlayerConnection;
+import net.minecraft.server.v1_11_R1.Scoreboard;
+import net.minecraft.server.v1_11_R1.ScoreboardBaseCriteria;
+import net.minecraft.server.v1_11_R1.ScoreboardObjective;
 
 public class PacketScoreboard {
 

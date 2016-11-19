@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import net.minecraft.server.v1_10_R1.PacketPlayOutScoreboardTeam;
-import net.minecraft.server.v1_10_R1.ScoreboardTeam;
+import net.minecraft.server.v1_11_R1.PacketPlayOutScoreboardTeam;
+import net.minecraft.server.v1_11_R1.ScoreboardTeam;
 
 public class PacketScoreboardTeam {
 
