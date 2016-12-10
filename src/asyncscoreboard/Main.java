@@ -7,6 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import asyncscoreboard.storage.Storage;
 import placeholders.KillsDeathsPlaceHolder;
+import placeholders.MoneyPlaceholder;
 import placeholders.PingPlaceholder;
 import placeholders.WorldGuardPlaceholder;
 
@@ -55,9 +56,10 @@ public class Main extends JavaPlugin {
 		reloadConfig();
 		storage.start();
 
-		PingPlaceholder.hook();
 		WorldGuardPlaceholder.hook();
+		PingPlaceholder.hook();
 		KillsDeathsPlaceHolder.hook();
+		MoneyPlaceholder.hook();
 
 		FileConfiguration config = getConfig();
 		cfgSBDisabledWorlds = new HashSet<>(config.getStringList("Scoreboard.DisabledWorlds"));
@@ -91,6 +93,7 @@ public class Main extends JavaPlugin {
 		WorldGuardPlaceholder.unhook();
 		PingPlaceholder.unhook();
 		KillsDeathsPlaceHolder.unhook();
+		MoneyPlaceholder.hook();
 		storage.stop();
 	}
 
