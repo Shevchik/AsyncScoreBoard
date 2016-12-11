@@ -35,7 +35,7 @@ public class MoneyPlaceholder extends PlaceholderHook {
 	}
 
 	public static void hook() {
-		PlaceholderAPI.registerPlaceholderHook(hook_name, new PingPlaceholder());
+		PlaceholderAPI.registerPlaceholderHook(hook_name, new MoneyPlaceholder());
 	}
 
 	public static void unhook() {
