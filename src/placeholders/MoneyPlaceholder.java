@@ -22,16 +22,18 @@ public class MoneyPlaceholder extends PlaceholderHook {
 				return String.valueOf(economy.getBalance(player));
 			}
 			case "round": {
-				return String.valueOf(Math.round(economy.getBalance(player)));
+				return String.valueOf((int) Math.round(economy.getBalance(player)));
 			}
 			case "floor": {
-				return String.valueOf(Math.floor(economy.getBalance(player)));
+				return String.valueOf((int) Math.floor(economy.getBalance(player)));
 			}
 			case "ceil": {
-				return String.valueOf(Math.ceil(economy.getBalance(player)));
+				return String.valueOf((int) Math.ceil(economy.getBalance(player)));
+			}
+			default: {
+				return null;
 			}
 		}
-		return null;
 	}
 
 	public static void hook() {
