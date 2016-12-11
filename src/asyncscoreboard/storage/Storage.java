@@ -15,7 +15,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerLoginEvent;
 
 import asyncscoreboard.Main;
 
@@ -24,7 +23,7 @@ public class Storage implements Listener {
 	private final ConcurrentHashMap<UUID, PlayerData> storage = new ConcurrentHashMap<>();
 
 	public PlayerData getPlayerData(UUID uuid) {
-		return storage.get(uuid);
+		return storage.compute(uuid, (euuid, data) -> data != null ? data : new PlayerData());
 	}
 
 	private File getDataFile() {
@@ -63,13 +62,6 @@ public class Storage implements Listener {
 		} catch (IOException e) {
 		}
 		HandlerList.unregisterAll(this);
-	}
-
-	@EventHandler
-	public void onLogin(PlayerLoginEvent event) {
-		if (getPlayerData(event.getPlayer().getUniqueId()) == null) {
-			storage.put(event.getPlayer().getUniqueId(), new PlayerData());
-		}
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR)
