@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-import net.minecraft.server.v1_11_R1.PacketPlayOutScoreboardScore;
-import net.minecraft.server.v1_11_R1.PacketPlayOutScoreboardTeam;
-import net.minecraft.server.v1_11_R1.ScoreboardScore;
+import net.minecraft.server.v1_12_R1.PacketPlayOutScoreboardScore;
+import net.minecraft.server.v1_12_R1.PacketPlayOutScoreboardTeam;
+import net.minecraft.server.v1_12_R1.ScoreboardScore;
 import packetscoreboard.PacketScoreboard.PointedScoreboardObjective;
 import packetscoreboard.PacketScoreboardTeam.PacketTeam;
 
