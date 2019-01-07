@@ -2,8 +2,10 @@ package placeholders;
 
 import org.bukkit.entity.Player;
 
+import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldguard.LocalPlayer;
-import com.sk89q.worldguard.bukkit.WGBukkit;
+import com.sk89q.worldguard.WorldGuard;
+import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.ApplicableRegionSet;
 
 import asyncscoreboard.Main;
@@ -20,11 +22,15 @@ public class WorldGuardPlaceholder extends PlaceholderHook {
 			return null;
 		}
 		if (identifier.equals("current_region")) {
-			ApplicableRegionSet ars = WGBukkit.getRegionManager(player.getWorld()).getApplicableRegions(player.getLocation());
+			ApplicableRegionSet ars =
+				WorldGuard.getInstance()
+				.getPlatform()
+				.getRegionContainer().get(BukkitAdapter.adapt(player.getWorld()))
+				.getApplicableRegions(BukkitAdapter.asVector(player.getLocation()).toBlockPoint());
 			if (ars.size() == 0) {
 				return Main.cfgPHWGNoRegion;
 			}
-			LocalPlayer localplayer = WGBukkit.getPlugin().wrapPlayer(player, true);
+			LocalPlayer localplayer = WorldGuardPlugin.inst().wrapPlayer(player, true);
 			String region = ars.getRegions().iterator().next().getId();
 			if (ars.isOwnerOfAll(localplayer) || ars.isMemberOfAll(localplayer)) {
 				return Main.cfgPHWGOwnRegionPrefix + region;

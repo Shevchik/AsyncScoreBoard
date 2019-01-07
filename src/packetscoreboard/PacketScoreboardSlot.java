@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-import net.minecraft.server.v1_12_R1.PacketPlayOutScoreboardScore;
-import net.minecraft.server.v1_12_R1.PacketPlayOutScoreboardTeam;
-import net.minecraft.server.v1_12_R1.ScoreboardScore;
+import net.minecraft.server.v1_13_R2.PacketPlayOutScoreboardScore;
+import net.minecraft.server.v1_13_R2.PacketPlayOutScoreboardTeam;
+import net.minecraft.server.v1_13_R2.ScoreboardServer;
 import packetscoreboard.PacketScoreboard.PointedScoreboardObjective;
 import packetscoreboard.PacketScoreboardTeam.PacketTeam;
 
@@ -33,12 +33,12 @@ public class PacketScoreboardSlot {
 
 	public void setEntry(String entry, int value) {
 		entryToValue.put(entry, value);
-		packetscoreboard.getPlayerConnection().sendPacket(new PacketPlayOutScoreboardScore(new PacketScore(objective, entry, value)));
+		packetscoreboard.getPlayerConnection().sendPacket(new PacketPlayOutScoreboardScore(ScoreboardServer.Action.CHANGE, objective.getName(), entry, value));
 	}
 
 	public void removeEntry(String entry) {
 		entryToValue.remove(entry);
-		packetscoreboard.getPlayerConnection().sendPacket(new PacketPlayOutScoreboardScore(entry, objective));
+		packetscoreboard.getPlayerConnection().sendPacket(new PacketPlayOutScoreboardScore(ScoreboardServer.Action.REMOVE, objective.getName(), entry, 0));
 	}
 
 	public Set<PacketScoreboardTeam> getTeams() {
@@ -54,21 +54,6 @@ public class PacketScoreboardSlot {
 	public void removeTeam(PacketScoreboardTeam team) {
 		teams.remove(team);
 		packetscoreboard.getPlayerConnection().sendPacket(new PacketPlayOutScoreboardTeam(new PacketTeam(team.getName(), "", "", Collections.emptyList()), 1));
-	}
-
-	private static class PacketScore extends ScoreboardScore {
-
-		private final int score;
-		public PacketScore(PointedScoreboardObjective objective, String displayName, int value) {
-			super(null, objective, displayName);
-			this.score = value;
-		}
-
-		@Override
-		public int getScore() {
-			return score;
-		}
-
 	}
 
 }

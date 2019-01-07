@@ -5,8 +5,10 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import net.minecraft.server.v1_12_R1.PacketPlayOutScoreboardTeam;
-import net.minecraft.server.v1_12_R1.ScoreboardTeam;
+import net.minecraft.server.v1_13_R2.ChatComponentText;
+import net.minecraft.server.v1_13_R2.IChatBaseComponent;
+import net.minecraft.server.v1_13_R2.PacketPlayOutScoreboardTeam;
+import net.minecraft.server.v1_13_R2.ScoreboardTeam;
 
 public class PacketScoreboardTeam {
 
@@ -72,13 +74,13 @@ public class PacketScoreboardTeam {
 		}
 
 		@Override
-		public String getPrefix() {
-			return prefix;
+		public IChatBaseComponent getPrefix() {
+			return new ChatComponentText(prefix);
 		}
 
 		@Override
-		public String getSuffix() {
-			return suffix;
+		public IChatBaseComponent getSuffix() {
+			return new ChatComponentText(suffix);
 		}
 
 		@Override

@@ -3,17 +3,18 @@ package packetscoreboard;
 import java.util.ArrayList;
 import java.util.EnumMap;
 
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_13_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
 
-import net.minecraft.server.v1_12_R1.IScoreboardCriteria;
-import net.minecraft.server.v1_12_R1.PacketPlayOutScoreboardDisplayObjective;
-import net.minecraft.server.v1_12_R1.PacketPlayOutScoreboardObjective;
-import net.minecraft.server.v1_12_R1.PlayerConnection;
-import net.minecraft.server.v1_12_R1.Scoreboard;
-import net.minecraft.server.v1_12_R1.ScoreboardBaseCriteria;
-import net.minecraft.server.v1_12_R1.ScoreboardObjective;
+import net.minecraft.server.v1_13_R2.ChatComponentText;
+import net.minecraft.server.v1_13_R2.IScoreboardCriteria;
+import net.minecraft.server.v1_13_R2.IScoreboardCriteria.EnumScoreboardHealthDisplay;
+import net.minecraft.server.v1_13_R2.PacketPlayOutScoreboardDisplayObjective;
+import net.minecraft.server.v1_13_R2.PacketPlayOutScoreboardObjective;
+import net.minecraft.server.v1_13_R2.PlayerConnection;
+import net.minecraft.server.v1_13_R2.Scoreboard;
+import net.minecraft.server.v1_13_R2.ScoreboardObjective;
 
 public class PacketScoreboard {
 
@@ -72,12 +73,11 @@ public class PacketScoreboard {
 	}
 
 	private static final Scoreboard fakeScoreboard = new Scoreboard();
-	private static final IScoreboardCriteria fakeCriteria = new ScoreboardBaseCriteria("dummy");
 
 	protected static class PointedScoreboardObjective extends ScoreboardObjective {
 
 		public PointedScoreboardObjective(String name) {
-			super(fakeScoreboard, name, fakeCriteria);
+			super(fakeScoreboard, name, IScoreboardCriteria.DUMMY, new ChatComponentText(""), EnumScoreboardHealthDisplay.INTEGER);
 		}
 
 	}
@@ -86,7 +86,7 @@ public class PacketScoreboard {
 
 		public NamedScoreboardObjective(String name, String title) {
 			super(name);
-			setDisplayName(title);
+			setDisplayName(new ChatComponentText(title));
 		}
 
 	}
